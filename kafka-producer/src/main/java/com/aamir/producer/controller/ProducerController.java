@@ -37,4 +37,21 @@ public class ProducerController {
                 });
     }
 
+    @PostMapping("/stream")
+    public CompletableFuture<ResponseEntity<String>> sendStreamMessage(@RequestBody String message) {
+        log.info("message for stream: {}", message);
+
+        return kafkaTemplate.send("stream-topic", message)
+                .thenApply(result -> {
+                    String response = "Sent stream Message= " + message + " with offset= " + result.getRecordMetadata().offset();
+                    log.info("Partitions is in sendStreamMessage {}", result.getRecordMetadata().partition());
+                    return ResponseEntity.ok(response);
+                })
+                .exceptionally(ex -> {
+                    log.error("Unable  to send message= {} due to {}", message, ex.getMessage());
+                    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                            .body("Failed to send message: " + ex.getMessage());
+                });
+    }
+
 }

@@ -36,4 +36,20 @@ public class KafkaConfig {
                 .replicas(1)
                 .build();
     }
+
+    @Bean
+    public NewTopic streamTopic() {
+        return TopicBuilder.name("stream-topic")
+                .partitions(1)
+                .replicas(1)
+                .build();
+    }
+
+    @Bean
+    public NewTopic testStreamTopic() {
+        return TopicBuilder.name("test-stream-topic")
+                .partitions(1)
+                .replicas(1)
+                .build();
+    }
 }

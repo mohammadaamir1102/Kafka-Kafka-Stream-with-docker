@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: kafka-stream
+server:
+  port: 8083

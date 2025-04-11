@@ -4,5 +4,6 @@
     <file url="file://$PROJECT_DIR$/kafka-consumer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kafka-mysql-docker/kafka-mysql-docker/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kafka-producer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kafka-stream/src/main/java" charset="UTF-8" />
   </component>
 </project>
