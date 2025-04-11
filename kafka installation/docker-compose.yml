@@ -1,0 +1,31 @@
+
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+
+#  mysql:
+#    image: mysql:8
+#    environment:
+#      MYSQL_ROOT_PASSWORD: aamir
+#      MYSQL_DATABASE: aamir
+#    ports:
+#      - "3307:3307"
+#    volumes:
+#      - /c/mysql-data:/var/lib/mysql  # Windows-style bind mount
+#      - ./mysql-init:/docker-entrypoint-initdb.d
+
